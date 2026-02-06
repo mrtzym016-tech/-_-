@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Copy Tools – نصوص جاهزة</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <h1>📋 Copy Tools</h1>
+  <p>نصوص جاهزة تُستخدم فورًا — بدون تفكير</p>
+</header>
+
+<main class="container">
+
+  <div class="controls">
+    <label>اختر نوع النص</label>
+    <select id="category" onchange="render()">
+      <option value="whatsapp">💬 رسائل واتساب بيع</option>
+      <option value="reply">📩 ردود عملاء</option>
+      <option value="video">🎬 سكربتات فيديو</option>
+    </select>
+  </div>
+
+  <section id="content" class="grid"></section>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 — نصوص بشرية جاهزة | صنع لمَن يريد نتيجة</p>
+</footer>
+
+<script src="data.js"></script>
+<script>
+function render() {
+  const cat = document.getElementById("category").value;
+  const box = document.getElementById("content");
+  box.innerHTML = "";
+
+  data[cat].forEach(text => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <pre>${text}</pre>
+      <button onclick="copy(this)">نسخ النص</button>
+    `;
+    box.appendChild(div);
+  });
+}
+
+function copy(btn) {
+  const text = btn.previousElementSibling.innerText;
+  navigator.clipboard.writeText(text);
+  btn.innerText = "✔ تم النسخ";
+  setTimeout(() => btn.innerText = "نسخ النص", 2000);
+}
+
+render();
+</script>
+
+</body>
+</html>
