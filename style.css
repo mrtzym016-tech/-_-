@@ -102,45 +102,30 @@ select {
   font-size: 13px;
   opacity: 0.6;
 }
+body { font-family: Arial; background:#f5f5f5; padding:20px; }
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:15px;
 }
-
 .card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  position: relative;
-  transition: transform 0.2s;
+  background:#fff;
+  padding:15px;
+  border-radius:8px;
+  position:relative;
 }
-
-.card:hover {
-  transform: scale(1.02);
-}
-
 .card.locked {
-  background-color: #eee;
-  color: #888;
+  background:#eaeaea;
+  color:#777;
 }
-
-.card.locked::before {
-  content: "🔒";
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
+.card.locked::after {
+  content:"🔒";
+  position:absolute;
+  top:10px;
+  right:10px;
 }
-
-button.copy-btn {
-  margin-top: 10px;
-  padding: 5px 10px;
-  cursor: pointer;
-  border: none;
-  background-color: #4caf50;
-  color: white;
-  border-radius: 5px;
+button {
+  margin-top:10px;
+  padding:6px 12px;
+  cursor:pointer;
 }
