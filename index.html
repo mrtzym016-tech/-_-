@@ -61,18 +61,30 @@ render();
 
 </body>
 </html>
-<h2>🔒 النصوص المدفوعة</h2>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>النصوص المدفوعة</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<div id="lockedInfo" class="locked-info">
-  🔐 هذه النصوص مقفولة  
-  <br>
-  اشترك للحصول على كلمة السر  
-  <br>
-  📩 تيليجرام:
-  <a href="https://t.me/@mortza016" target="_blank">@@mortza016</a>
+<h1>🔒 النصوص المدفوعة</h1>
+
+<div class="pay-info">
+اشترك للحصول على كلمة السر  
+<br>
+📩 تيليجرام:
+<a href="https://t.me/mortza016" target="_blank">@mortza016</a>
 </div>
 
-<input type="password" id="passwordInput" placeholder="أدخل كلمة السر">
+<input id="passwordInput" type="password" placeholder="أدخل كلمة السر">
 <button onclick="unlock()">فتح</button>
 
 <div id="paidContainer" class="grid"></div>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
