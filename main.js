@@ -1,16 +1,18 @@
 const PASSWORD = "12345"; // غيرها لاحقًا
-
 const paidContainer = document.getElementById("paidContainer");
 
-paidTexts.forEach(text => {
+// عرض كل النصوص على شكل بطاقات مقفولة
+paidTexts.forEach((text, index) => {
   const div = document.createElement("div");
   div.className = "card locked";
   div.innerHTML = `
-    <pre>🔒 هذا النص مدفوع</pre>
+    <h4>نص مدفوع ${index + 1}</h4>
+    <pre>🔒 مقفول</pre>
   `;
   paidContainer.appendChild(div);
 });
 
+// فتح النصوص عند إدخال كلمة السر
 function unlock() {
   const input = document.getElementById("passwordInput").value;
 
@@ -20,18 +22,24 @@ function unlock() {
 
     paidContainer.innerHTML = "";
 
-    paidTexts.forEach(text => {
+    paidTexts.forEach((text, index) => {
       const div = document.createElement("div");
       div.className = "card";
       div.innerHTML = `
+        <h4>نص مدفوع ${index + 1}</h4>
         <pre>${text}</pre>
-        <button onclick="navigator.clipboard.writeText('${text}')">
-          نسخ النص
-        </button>
+        <button class="copy-btn" onclick="copyText('${text}')">نسخ النص</button>
       `;
       paidContainer.appendChild(div);
     });
   } else {
     alert("❌ كلمة السر غير صحيحة");
   }
+}
+
+// وظيفة نسخ النصوص
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert("تم نسخ النص!");
+  });
 }
