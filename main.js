@@ -1,45 +1,27 @@
-const PASSWORD = "12345"; // غيرها لاحقًا
-const paidContainer = document.getElementById("paidContainer");
+const PASSWORD = "12345";
+const container = document.getElementById("paidContainer");
 
-// عرض كل النصوص على شكل بطاقات مقفولة
-paidTexts.forEach((text, index) => {
+paidTexts.forEach(t => {
   const div = document.createElement("div");
   div.className = "card locked";
-  div.innerHTML = `
-    <h4>نص مدفوع ${index + 1}</h4>
-    <pre>🔒 مقفول</pre>
-  `;
-  paidContainer.appendChild(div);
+  div.innerHTML = `<p>نص مدفوع</p>`;
+  container.appendChild(div);
 });
 
-// فتح النصوص عند إدخال كلمة السر
-function unlock() {
-  const input = document.getElementById("passwordInput").value;
+function unlock(){
+  const val = document.getElementById("passwordInput").value;
+  if(val !== PASSWORD) return alert("كلمة السر غير صحيحة");
 
-  if (input === PASSWORD) {
-    document.getElementById("lockedInfo").style.display = "none";
-    document.getElementById("passwordInput").style.display = "none";
-
-    paidContainer.innerHTML = "";
-
-    paidTexts.forEach((text, index) => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `
-        <h4>نص مدفوع ${index + 1}</h4>
-        <pre>${text}</pre>
-        <button class="copy-btn" onclick="copyText('${text}')">نسخ النص</button>
-      `;
-      paidContainer.appendChild(div);
-    });
-  } else {
-    alert("❌ كلمة السر غير صحيحة");
-  }
-}
-
-// وظيفة نسخ النصوص
-function copyText(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    alert("تم نسخ النص!");
+  container.innerHTML = "";
+  paidTexts.forEach(t=>{
+    const div = document.createElement("div");
+    div.className="card";
+    div.innerHTML = `
+      <small>${t.category}</small>
+      <p>${t.part1}</p>
+      <p>${t.part2}</p>
+      <button onclick="navigator.clipboard.writeText('${t.part1} ${t.part2}')">نسخ</button>
+    `;
+    container.appendChild(div);
   });
 }
